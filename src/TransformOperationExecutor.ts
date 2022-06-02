@@ -164,7 +164,7 @@ export class TransformOperationExecutor {
            * Why:
            * So we may instantiate the class, without calling the constructor.
            */
-          newValue = Object.create(targetType.prototype);
+          newValue = Object.create((targetType as any).prototype);
         } else {
           newValue = {};
         }
