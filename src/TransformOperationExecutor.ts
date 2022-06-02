@@ -157,7 +157,14 @@ export class TransformOperationExecutor {
         if (isMap) {
           newValue = new Map();
         } else if (targetType) {
-          newValue = new (targetType as any)();
+          /**
+           * What:
+           * Replaces "newValue = new (targetType as any)();"
+           *
+           * Why:
+           * So we may instantiate the class, without calling the constructor.
+           */
+          newValue = Object.create(targetType.prototype);
         } else {
           newValue = {};
         }
